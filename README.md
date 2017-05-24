@@ -4,7 +4,7 @@
 
 Thành viên:
 * [x] **1412107** phandung1349 (tên tài khoản github)
-* [ ] **MSSV2** Tên sinh viên 2 (tên tài khoản github)
+* [ ] **1412004** dangtruongan004 (dangtruongan)
 * [ ] **MSSV3** Tên sinh viên 2 (tên tài khoản github)
 
 ## Yêu cầu
