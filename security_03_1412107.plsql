@@ -6,6 +6,17 @@ grant create session to sysadmin_lab01;
 grant dba,connect to sysadmin_lab01;
 grant all privileges to sysadmin_lab01;
 GRANT EXEMPT ACCESS POLICY TO sysadmin_lab01;
+--them
+GRANT EXECUTE ON DBMS_CRYPTO TO sysadmin_lab01;
+
+--tao tài kho?n admin qu?n lý mã hóa
+--connect sys
+create user sysadmin_crypto identified by sysadmin_crypto;
+grant create session to sysadmin_crypto;
+grant dba,connect to sysadmin_crypto;
+GRANT EXECUTE ON DBMS_CRYPTO TO sysadmin_crypto;
+--grant all privileges to sysadmin_crypto;
+--GRANT EXEMPT ACCESS POLICY TO sysadmin_crypto;
 
 --connect sys
 -----------------------tao tai khoan-------------------------------------
