@@ -63,37 +63,37 @@ Create table PHANCONG_1412107_1412004(
 
 -------------------------------2. create foreign key------------------------------------------
 --1. PHONGBAN
-Alter table PHONGBAN add(
-constraint FK_PHONGBAN_NHANVIEN_1412107_1412004 foreign key(TRPHG) references NHANVIEN(MANV),
-constraint FK_PHONGBAN_CHINHANH_1412107_1412004 foreign key(chiNhanh) references CHINHANH(maCN)
+Alter table PHONGBAN_1412107_1412004 add(
+constraint FK_PHONGBAN_NHANVIEN_1412107_1412004 foreign key(TRPHG) references NHANVIEN_1412107_1412004(MANV),
+constraint FK_PHONGBAN_CHINHANH_1412107_1412004 foreign key(chiNhanh) references CHINHANH_1412107_1412004(maCN)
 );
 
 --2. NHANVIEN
-Alter table NHANVIEN add(
-constraint FK_NHANVIEN_PHONGBAN_1412107_1412004 foreign key(MAPHG) references PHONGBAN(MAPHG),
-constraint FK_NHANVIEN_CHINHANH_1412107_1412004 foreign key(chiNhanh) references CHINHANH(maCN)
+Alter table NHANVIEN_1412107_1412004 add(
+constraint FK_NHANVIEN_PHONGBAN_1412107_1412004 foreign key(MAPHG) references PHONGBAN_1412107_1412004(MAPHG),
+constraint FK_NHANVIEN_CHINHANH_1412107_1412004 foreign key(chiNhanh) references CHINHANH_1412107_1412004(maCN)
 );
 
 --3. CHINHANH
-Alter table CHINHANH add(
-constraint FK_CHINHANH_NHANVIEN_1412107_1412004 foreign key(truongChiNhanh) references NHANVIEN(MANV)
+Alter table CHINHANH_1412107_1412004 add(
+constraint FK_CHINHANH_NHANVIEN_1412107_1412004 foreign key(truongChiNhanh) references NHANVIEN_1412107_1412004(MANV)
 );
 
 --4. DUAN
-Alter table DUAN add(
-constraint FK_DUAN_PHONGBAN_1412107_1412004 foreign key (phongChuTri) references PHONGBAN(MAPHG),
-constraint FK_DUAN_NHANVIEN_1412107_1412004 foreign key (truongDA) references NHANVIEN(MANV)
+Alter table DUAN_1412107_1412004 add(
+constraint FK_DUAN_PHONGBAN_1412107_1412004 foreign key (phongChuTri) references PHONGBAN_1412107_1412004(MAPHG),
+constraint FK_DUAN_NHANVIEN_1412107_1412004 foreign key (truongDA) references NHANVIEN_1412107_1412004(MANV)
 );
 
 --5. CHITIEU
-Alter table CHITIEU add(
-constraint FK_CHITIEU_DUAN_1412107_1412004 foreign key(duAn) references DUAN(maDA)
+Alter table CHITIEU_1412107_1412004 add(
+constraint FK_CHITIEU_DUAN_1412107_1412004 foreign key(duAn) references DUAN_1412107_1412004(maDA)
 );
 
 --6. PHANCONG
-Alter table PHANCONG add(
-constraint FK_PHANCONG_DUAN_1412107_1412004 foreign key(maDA) references DUAN(maDA),
-constraint FK_PHANCONG_NHANVIEN_1412107_1412004 foreign key(MANV) references NHANVIEN(MANV)
+Alter table PHANCONG_1412107_1412004 add(
+constraint FK_PHANCONG_DUAN_1412107_1412004 foreign key(maDA) references DUAN_1412107_1412004(maDA),
+constraint FK_PHANCONG_NHANVIEN_1412107_1412004 foreign key(MANV) references NHANVIEN_1412107_1412004(MANV)
 );
 
 
