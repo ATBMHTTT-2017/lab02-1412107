@@ -8,7 +8,7 @@ Create table PHONGBAN_1412107_1412004(
   NG_NHANCHUC date,
 	soNhanVien int, 
   chiNhanh varchar2(15),
-	constraint PK_PHONGBAN primary key (MAPHG)
+	constraint PK_PHONGBAN_1412107_1412004 primary key (MAPHG)
 );
 
 --2. NHANVIEN
@@ -22,7 +22,7 @@ Create table NHANVIEN_1412107_1412004(
   chiNhanh varchar2(15),
 	LUONG float,
   MATKHAU varchar2(15),
-	constraint PK_NHANVIEN primary key (MANV)
+	constraint PK_NHANVIEN_1412107_1412004 primary key (MANV)
 );
 
 --3. CHINHANH
@@ -30,7 +30,7 @@ Create table CHINHANH_1412107_1412004(
   maCN varchar2(15) null,
   tenCN nvarchar2(50),
   truongChiNhanh varchar2(15),
-  constraint PK_CHINHANH primary key (maCN)
+  constraint PK_CHINHANH_1412107_1412004 primary key (maCN)
 );
 
 --4. DUAN
@@ -40,7 +40,7 @@ Create table DUAN(
   kinhPhi float,
   phongChuTri varchar2(15),
   truongDA varchar2(15),
-  constraint PK_DUAN primary key (maDA)
+  constraint PK_DUAN_1412107_1412004 primary key (maDA)
 );
 
 --5. CHITIEU
@@ -49,7 +49,7 @@ Create table CHITIEU_1412107_1412004(
   tenChiTieu nvarchar2(50),
   soTien float,
   duAn varchar2(15),
-  constraint PK_CHITIEU primary key (maChiTieu)
+  constraint PK_CHITIEU_1412107_1412004 primary key (maChiTieu)
 );
 --6. PHANCONG
 Create table PHANCONG_1412107_1412004(
@@ -57,7 +57,7 @@ Create table PHANCONG_1412107_1412004(
   maDA varchar2(15) not null,
   vaiTro nvarchar2(50),
   phuCap float,
-  constraint PK_PHANCONG primary key (MANV, maDA)
+  constraint PK_PHANCONG_1412107_1412004 primary key (MANV, maDA)
 );
 
 
