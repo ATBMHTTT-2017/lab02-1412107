@@ -1,35 +1,47 @@
---yeu cau: ma hoa de chi nhan vien duoc phep xem luong cua minh
---create role tat ca cac nhan vien binh thuong
---connect sys
-create role ROLE_NHANVIEN_THUONG;
---grant select to role ROLE_NHANVIEN_THUONG;
---connect sysadmin_lab01
-grant select on NHANVIEN to ROLE_NHANVIEN_THUONG;
---grant role to cac nhanvien
---connect sysadmin_lab01
-grant ROLE_NHANVIEN_THUONG to NS001, KH001, DA001, KD001, TT001;
---connect NS001 to test
-select * from sysadmin_lab01.NHANVIEN;
---connect NS001 to test
-select * from sysadmin_lab01.NHANVIEN;
-select MANV, HOTEN, DIACHI, DIENTHOAI, EMAIL, MAPHG, CHINHANH, MATKHAU from sysadmin_lab01.NHANVIEN;
---test ok
---connect sysadmin_lab02
-select * from sysadmin_lab01.NHANVIEN;
---ma hoa doi xung
---connect as sysadmin_lab02
-grant select on NHANVIEN to sysadmin_crypto;
---test
---connect as sysadmin_crypto
-select * from sysadmin_lab01.NHANVIEN;--ok
---connect as sysadmin_crypto
---cach lam sysadmin_lab02: chua ham ma hoa, giai ma
---ham mahoa ma hoa toan bo luong
---cap quyen giai ma cho tung user
-----bo qua
--------bay gio cho sysadmin_lab02 la account chua procedure mahoa, giaima
 --ham ma hoa
+--connect as sysadmin_lab02
+CREATE OR REPLACE PROCEDURE MAHOA_LUONG
+AS
+BEGIN
+  DECLARE
+    ORIGINAL_LUONG INT;
+    LUONG_CHAR NVARCHAR2(15);
+    MANV_CHAY NVARCHAR2(6);
+    SOLUONG INT;
+    BIEN_CHAY INT :=1;
+    BIENCHAY_CHAR NVARCHAR2(2);
+    PUBLIC_KEY RAW(32) :='12345678912345678912345678912345';
+    encryption_type PLS_INTEGER := dbms_crypto.encrypt_aes256 + dbms_crypto.chain_cbc + dbms_crypto.pad_pkcs5;
+    ENCRYPT_DATA RAW(2000);
+  BEGIN
+    SELECT COUNT(*) INTO SOLUONG FROM NHANVIEN_1412004_1412107;
+    WHILE BIEN_CHAY <=SOLUONG
+      LOOP
+         BIENCHAY_CHAR := TO_CHAR(BIEN_CHAY);
+         MANV_CHAY := 'NV' || BIENCHAY_CHAR;
+         SELECT LUONG INTO ORIGINAL_LUONG FROM NHANVIEN_1412004_1412107 WHERE MANV = MANV_CHAY;
+         LUONG_CHAR := TO_CHAR(ORIGINAL_LUONG);
+
+         ENCRYPT_DATA    := dbms_crypto.encrypt( 
+         src => utl_i18n.string_to_raw(LUONG_CHAR,'AL32UTF8'), 
+         typ => dbms_crypto.encrypt_aes256 + dbms_crypto.chain_cbc + dbms_crypto.pad_pkcs5, 
+         key => utl_i18n.string_to_raw(PUBLIC_KEY,'AL32UTF8') );
+
+         UPDATE NHANVIEN_1412004_1412107
+         SET LUONG = ''
+         WHERE MANV = MANV_CHAY;
+              
+         UPDATE NHANVIEN_1412004_1412107
+         SET LUONG1 = ENCRYPT_DATA
+         WHERE MANV = MANV_CHAY;
+         
+         DBMS_OUTPUT.PUT_LINE('ENCRYPT'||ENCRYPT_DATA);
+         BIEN_CHAY:=BIEN_CHAY+1;
+    END LOOP;
+  END;
+END;
 --ham giai ma
+--connect as sysadmin_lab02
 CREATE OR REPLACE PROCEDURE GIAIMA_LUONG
 AS
 BEGIN
@@ -57,3 +69,19 @@ BEGIN
      DBMS_OUTPUT.PUT_LINE('ENCRYPT'||ENCRYPT_DATA);
   END;
 END;
+--tao ra role tat ca nhan vien
+--connect sys
+create role ROLE_NHANVIEN;
+--connect sysadmin_lab02
+grant select on NHANVIEN_1412004_1412107 to ROLE_NHANVIEN;
+--connect sys
+grant ROLE_NHANVIEN to 
+DANS001TR, DAKH001TR, DADA001TR, DAKD001TR, DATT001TR
+, NSTR, KHTR, DATR, KDTR, TTTR
+, CN001TR, CN002TR, CN003TR, CN004TR, CN005TR
+, NS001, KH001, DA001, KD001, TT001
+, GD001, GD002, GD003, GD004, GD005;
+--grant execute
+GRANT EXECUTE ON DBMS_CRYPTO TO sysadmin_lab02;
+EXEC sysadmin_lab02.MAHOA_LUONG;
+GRANT EXECUTE ON GIAIMA_LUONG TO NV2;
