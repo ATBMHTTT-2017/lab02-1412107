@@ -54,15 +54,15 @@ BEGIN
     ENCRYPT_DATA RAW(2000);
   BEGIN
      USER_CURR :=SYS_CONTEXT('USERENV','SESSION_USER');
-     SELECT LUONG INTO ORIGINAL_LUONG FROM sysadmin_crypto WHERE MANV = USER_CURR;
+     SELECT LUONG INTO ORIGINAL_LUONG FROM sysadmin_lab02 WHERE MANV = USER_CURR;
      LUONG_CHAR := TO_CHAR(ORIGINAL_MATKHAU);
 
-     ENCRYPT_DATA    := dbms_crypto.encrypt( 
+     ENCRYPT_DATA    := dbms_crypto.encrypt(
      src => utl_i18n.string_to_raw(LUONG_CHAR,'AL32UTF8'), 
-     typ => dbms_crypto.encrypt_aes256 + dbms_crypto.chain_cbc + dbms_crypto.pad_pkcs5, 
+     typ => dbms_crypto.encrypt_aes256 + dbms_crypto.chain_cbc + dbms_crypto.pad_pkcs5,
      key => utl_i18n.string_to_raw(PUBLIC_KEY,'AL32UTF8') );
           
-     UPDATE NHANVIEN
+     UPDATE NHANVIEN_1412004_1412107
      SET LUONG = ENCRYPT_DATA
      WHERE MANV = USER_CURR;
     
