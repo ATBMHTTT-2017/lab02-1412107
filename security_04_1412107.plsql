@@ -1,4 +1,4 @@
---tao role ROEL_TRUONGDUAN, chua cac truong duan
+--tạo role ROEL_TRUONGDUAN, chứa các trưởng dự án
 --connect sys
 create role ROLE_TRUONGDUAN;
 --grant select, insert, update on DUAN_1412004_1412107 to ROLE_TRUOONGDUAN
@@ -11,7 +11,7 @@ grant ROLE_TRUONGDUAN to DANS001TR, DAKH001TR, DADA001TR, DAKD001TR, DATT001TR;
 --connect sysadmin_lab02
 grant select, insert, update on CHITIEU_1412004_1412107 to ROLE_TRUONGDUAN;
 
---tao ra role tat ca nhan vien
+--tạo role tất cả các nhân viên
 --connect sys
 create role ROLE_NHANVIEN;
 --connect sysadmin_lab02
