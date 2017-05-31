@@ -10,6 +10,7 @@ Create table PHONGBAN(
   chiNhanh varchar2(15),
 	constraint PK_PHONGBAN primary key (MAPHG)
 );
+_1412107_1412004
 --2. NHANVIEN
 Create table NHANVIEN(
 	MANV varchar2(15) not null,
@@ -23,6 +24,7 @@ Create table NHANVIEN(
   MATKHAU varchar2(15),
 	constraint PK_NHANVIEN primary key (MANV)
 );
+_1412107_1412004
 --3. CHINHANH
 Create table CHINHANH(
   maCN varchar2(15) null,
@@ -30,6 +32,7 @@ Create table CHINHANH(
   truongChiNhanh varchar2(15),
   constraint PK_CHINHANH primary key (maCN)
 );
+_1412107_1412004
 --4. DUAN
 Create table DUAN(
   maDA varchar2(15) not null,
@@ -39,6 +42,7 @@ Create table DUAN(
   truongDA varchar2(15),
   constraint PK_DUAN primary key (maDA)
 );
+_1412107_1412004
 --5. CHITIEU
 Create table CHITIEU(
   maChiTieu varchar2(15) not null,
@@ -47,6 +51,7 @@ Create table CHITIEU(
   duAn varchar2(15),
   constraint PK_CHITIEU primary key (maChiTieu)
 );
+_1412107_1412004
 --6. PHANCONG
 Create table PHANCONG(
   MANV varchar2(15) not null,
@@ -55,6 +60,7 @@ Create table PHANCONG(
   phuCap float,
   constraint PK_PHANCONG primary key (MANV, maDA)
 );
+_1412107_1412004
 
 -------------------------------2. create foreign key------------------------------------------
 --1. PHONGBAN
@@ -62,27 +68,33 @@ Alter table PHONGBAN add(
 constraint FK_PHONGBAN_NHANVIEN foreign key(TRPHG) references NHANVIEN(MANV),
 constraint FK_PHONGBAN_CHINHANH foreign key(chiNhanh) references CHINHANH(maCN)
 );
+_1412107_1412004
 --2. NHANVIEN
 Alter table NHANVIEN add(
 constraint FK_NHANVIEN_PHONGBAN foreign key(MAPHG) references PHONGBAN(MAPHG),
 constraint FK_NHANVIEN_CHINHANH foreign key(chiNhanh) references CHINHANH(maCN)
 );
+_1412107_1412004
 --3. CHINHANH
 Alter table CHINHANH add(
 constraint FK_CHINHANH_NHANVIEN foreign key(truongChiNhanh) references NHANVIEN(MANV)
 );
+_1412107_1412004
 --4. DUAN
 Alter table DUAN add(
 constraint FK_DUAN_PHONGBAN foreign key (phongChuTri) references PHONGBAN(MAPHG),
 constraint FK_DUAN_NHANVIEN foreign key (truongDA) references NHANVIEN(MANV)
 );
+_1412107_1412004
 --5. CHITIEU
 Alter table CHITIEU add(
 constraint FK_CHITIEU_DUAN foreign key(duAn) references DUAN(maDA)
 );
+_1412107_1412004
 --6. PHANCONG
 Alter table PHANCONG add(
 constraint FK_PHANCONG_DUAN foreign key(maDA) references DUAN(maDA),
 constraint FK_PHANCONG_NHANVIEN foreign key(MANV) references NHANVIEN(MANV)
 );
+_1412107_1412004
 
