@@ -3,7 +3,7 @@
 **Name of your app** là một bài tập 2 tại môn ATBMHTTT. Bài tập yêu cầu sinh viên tạo cơ sở dữ liệu, mã hóa theo các yêu cầu.
 
 Thành viên:
-* [x] **1412107** phandung1349 (tên tài khoản github)
+* [x] **1412107** Phan Tiến Dũng (phandung1349)
 * [X] **1412004** dangtruongan004 (dangtruongan)
 * [ ] **MSSV3** Tên sinh viên 2 (tên tài khoản github)
 
