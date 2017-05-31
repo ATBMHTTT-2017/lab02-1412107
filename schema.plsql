@@ -34,7 +34,7 @@ Create table CHINHANH_1412107_1412004(
 );
 
 --4. DUAN
-Create table DUAN(
+Create table DUAN_1412107_1412004(
   maDA varchar2(15) not null,
   tenDA nvarchar2(50),
   kinhPhi float,
