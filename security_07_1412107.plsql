@@ -33,5 +33,5 @@ update sysadmin_lab02.CHITIEU_1412004_1412107 set CHITIEU.SOTIEN = 15;
 --update ok
 insert into sysadmin_lab02.CHITIEU_1412004_1412107 values('CTDANS001003', 'dat chuan cong so nhu tren', 25, 'DANS001');
 --update ok
---policy5: ok
+--security_07: ok
 
