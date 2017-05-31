@@ -1,14 +1,14 @@
 --connect as sysadmin
 ----------------------------------1. create tables------------------------------------
 --1. PHONGBAN
-Create table PHONGBAN(
+Create table PHONGBAN_1412004_1412107(
 	MAPHG varchar2(15) not null,
 	TENPHG nvarchar2(30),
 	TRPHG varchar2(15),
   NG_NHANCHUC date,
 	soNhanVien int, 
   chiNhanh varchar2(15),
-	constraint PK_PHONGBAN primary key (MAPHG)
+	constraint PK_PHONGBAN_1412004_1412107 primary key (MAPHG)
 );
 --2. NHANVIEN
 Create table NHANVIEN(
@@ -58,9 +58,9 @@ Create table PHANCONG(
 
 -------------------------------2. create foreign key------------------------------------------
 --1. PHONGBAN
-Alter table PHONGBAN add(
-constraint FK_PHONGBAN_NHANVIEN foreign key(TRPHG) references NHANVIEN(MANV),
-constraint FK_PHONGBAN_CHINHANH foreign key(chiNhanh) references CHINHANH(maCN)
+Alter table PHONGBAN_1412004_1412107 add(
+constraint FK_PHONGBAN_NHANVIEN_1412004_1412107 foreign key(TRPHG) references NHANVIEN(MANV),
+constraint FK_PHONGBAN_CHINHANH_1412004_1412107 foreign key(chiNhanh) references CHINHANH(maCN)
 );
 --2. NHANVIEN
 Alter table NHANVIEN add(
@@ -89,7 +89,7 @@ constraint FK_PHANCONG_NHANVIEN foreign key(MANV) references NHANVIEN(MANV)
 --connect sysadmin_lab02 
 -------------------------------------3. insert data-------------------------------------------
 --1. CHINHANH
-Insert into CHINHANH values ('CN001', N'TP HCM', null);
+Insert into CHINHANH_1412004_1412107 values ('CN001', N'TP HCM', null);
 Insert into CHINHANH values ('CN002', N'V?ng Tàu', null);
 Insert into CHINHANH values ('CN003', N'Hà N?i', null);
 Insert into CHINHANH values ('CN004', N'B?c Liêu', null);
